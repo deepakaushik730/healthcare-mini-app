@@ -1,2 +1,22 @@
-<h1>welcome to dashboard</h1>
-<a href="/logout">logout</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+  <title>dashboard</title>
+</head>
+<body>
+  <div class="card">
+    <h2>health dashboard</h2>
+
+    <% if (score) { %>
+      <p><strong>health score:</strong> <%= score %></p>
+      <p><strong>recommendation:</strong> <%= recommendation %></p>
+    <% } else { %>
+      <p>no health data submitted yet</p>
+    <% } %>
+
+    <a href="/health">fill health form</a><br><br>
+    <a href="/logout">logout</a>
+  </div>
+</body>
+</html>

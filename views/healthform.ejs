@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+  <title>health form</title>
+</head>
+<body>
+  <div class="card">
+    <h2>health assessment</h2>
+
+    <form method="post" action="/health">
+      <label>sleep quality (1-5)</label>
+      <input type="number" name="sleep" min="1" max="5" required>
+
+      <label>stress level (1-5)</label>
+      <input type="number" name="stress" min="1" max="5" required>
+
+      <label>tiredness throughout day (1-5)</label>
+      <input type="number" name="tiredness" min="1" max="5" required>
+
+      <label>appetite</label>
+      <select name="appetite">
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </select>
+
+      <label>activity level</label>
+      <select name="activity">
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </select>
+
+      <button type="submit">submit</button>
+    </form>
+  </div>
+</body>
+</html>
