@@ -1,8 +1,23 @@
 const express = require("express")
 const path = require("path")
 require("dotenv").config()
+const cookieparser = require("cookie-parser")
 
+const authroutes = require("./routes/authroutes")
+const healthroutes = require("./routes/healthroutes")
+
+const connectdb = require("./config/db")
+
+
+
+connectdb()
 const app = express()
+
+
+app.use(authroutes)
+app.use(healthroutes)
+
+app.use(cookieparser())
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "../views"))
