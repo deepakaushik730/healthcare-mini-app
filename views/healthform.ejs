@@ -2,37 +2,38 @@
 <html>
 <head>
   <link rel="stylesheet" href="/css/style.css">
-  <title>health form</title>
+  <title>Health Form</title>
 </head>
 <body>
-  <div class="card">
-    <h2>health assessment</h2>
+  <div class="card" style="position:relative">
+  <a href="/dashboard" class="close-btn">&times;</a>
+    <h2>Health Assessment</h2>
 
     <form method="post" action="/health">
-      <label>sleep quality (1-5)</label>
+      <label>Sleep Quality (1-5)</label>
       <input type="number" name="sleep" min="1" max="5" required>
 
-      <label>stress level (1-5)</label>
+      <label>Stress Level (1-5)</label>
       <input type="number" name="stress" min="1" max="5" required>
 
-      <label>tiredness throughout day (1-5)</label>
+      <label>Tiredness Throughout Day (1-5)</label>
       <input type="number" name="tiredness" min="1" max="5" required>
 
-      <label>appetite</label>
+      <label>Appetite</label>
       <select name="appetite">
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
       </select>
 
-      <label>activity level</label>
+      <label>Activity Level</label>
       <select name="activity">
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
       </select>
 
-      <button type="submit">submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </body>

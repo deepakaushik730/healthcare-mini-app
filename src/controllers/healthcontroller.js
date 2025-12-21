@@ -47,10 +47,47 @@ const submithealth = async (req, res) => {
     recommendation: result.recommendation
   })
 
+  res.redirect("/dashboard")
+}
+
+
+const gethistory = async (req, res) => {
+  const records = await healthrecord
+    .find({ user: req.userid })
+    .sort({ createdat: -1 })
+
+  res.render("history", { records })
+}
+
+const getdashboard = async (req, res) => {
+  const records = await healthrecord
+    .find({ user: req.userid })
+    .sort({ createdat: 1 })
+
+  if (records.length === 0) {
+    return res.render("dashboard", {
+      score: null,
+      recommendation: null,
+      chartdata: []
+    })
+  }
+
+  const latest = records[records.length - 1]
+
   res.render("dashboard", {
-    score: result.score,
-    recommendation: result.recommendation
+    score: latest.score,
+    recommendation: latest.recommendation,
+    chartdata: records.map(r => ({
+      date: r.createdat.toDateString(),
+      score: r.score
+    }))
   })
 }
 
-module.exports = { gethealthform, submithealth }
+module.exports = {
+  gethealthform,
+  submithealth,
+  gethistory,
+  getdashboard
+}
+

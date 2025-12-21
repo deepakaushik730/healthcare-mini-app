@@ -1,22 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/css/style.css">
   <title>dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="card">
-    <h2>health dashboard</h2>
+  <div class="card" style="position:relative">
+  <div class="top-right">
+    <a href="/logout">Logout</a>
+  </div>
+    <h2>Health Dashboard</h2>
 
-    <% if (score) { %>
-      <p><strong>health score:</strong> <%= score %></p>
-      <p><strong>recommendation:</strong> <%= recommendation %></p>
+    <% if (chartdata && chartdata.length > 0) { %>
+      <canvas id="healthchart" style="margin-bottom:20px"></canvas>
+
+      <p><strong>Last Health score:</strong> <%= score %></p>
+      <p><strong>Last Recommendation:</strong> <%= recommendation %></p>
+
+      <script>
+  const ctx = document.getElementById("healthchart")
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: <%- JSON.stringify(chartdata.map(d =>
+        d.date.split(" ").slice(1).join(" ")
+      )) %>,
+      datasets: [{
+        data: <%- JSON.stringify(chartdata.map(d => d.score)) %>,
+        borderColor: "#4f46e5",
+        backgroundColor: "rgba(79,70,229,0.15)",
+        tension: 0.35,
+        fill: true,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: {
+          min: 0,
+          max: 200,
+          ticks: {
+            stepSize: 50
+          },
+          title: {
+            display: true,
+            text: "health score"
+          }
+        },
+        x: {
+         display: false,
+          title: {
+            display: true,
+            text: "date"
+          }
+      }
+    }}
+  })
+</script>
+
     <% } else { %>
-      <p>no health data submitted yet</p>
+      <p>No health data submitted yet.</p>
     <% } %>
 
-    <a href="/health">fill health form</a><br><br>
-    <a href="/logout">logout</a>
+    <div class="dashboard-actions">
+    <a href="/health">New Assessment</a>
+    <a href="/history">View History</a>
+  </div>
   </div>
 </body>
 </html>

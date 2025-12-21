@@ -48,8 +48,10 @@ const login = async (req, res) => {
     res.cookie("token", token)
     res.redirect("/dashboard")
   } catch (error) {
-    res.render("login", { error: "login failed" })
-  }
+  console.log(error)
+  res.render("register", { error: "something went wrong" })
+}
+
 }
 
 module.exports = { register, login }

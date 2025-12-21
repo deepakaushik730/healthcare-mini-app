@@ -1,6 +1,30 @@
-<form method="post" action="/login">
-  <input name="email" type="email" placeholder="email" required />
-  <input name="password" type="password" placeholder="password" required />
-  <button type="submit">login</button>
-  <p><%= error %></p>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>login</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="card">
+    <h2>SIGN IN</h2>
+
+    <form method="post" action="/login">
+      <label>Email</label>
+      <input name="email" type="email" required>
+
+      <label>Password</label>
+      <input name="password" type="password" required>
+
+      <button type="submit">Login</button>
+
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+    </form>
+
+    <div class="links">
+      <a href="/register">Create Account</a>
+    </div>
+  </div>
+</body>
+</html>
