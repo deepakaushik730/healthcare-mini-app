@@ -8,21 +8,22 @@ The application allows users to register, log in, submit health assessments, vie
 
 ## 🚀 Features
 
-- User authentication (Signup / Login) using JWT
-- Secure password hashing with bcrypt
+- Secure User Authentication (Signup / Login)
+- JWT-based session management
+- Password hashing using bcrypt
 - Health assessment form with multiple parameters
-- Mock health score calculation & recommendation
-- Dashboard with trend-based health analytics (Chart.js)
+- Mock AI-based health score & recommendations
+- Interactive dashboard with line chart visualizations
 - Health history with timestamped records
-- Clean, responsive UI with animated background
-- Deployed on Render
+- Clean, responsive UI with animated gradient background
+- Fully deployed on Render
 
 ---
 
 ## 🛠️ Tech Stack
 
 **Frontend**
-- EJS
+- EJS(Embedded JavaScript Templates)
 - CSS (custom, animated gradient UI)
 - Chart.js
 
@@ -50,14 +51,15 @@ The application allows users to register, log in, submit health assessments, vie
 ---
 🌐 Live Demo
 
-👉 Deployed link: (add Render URL here)
-Testing username:
-        password:
+👉 Deployed link: https://healthcare-mini-app.onrender.com/
+Testing username: asd@gmail.com
+        password: asd
+
 ## ⚙️ Local Setup Instructions
 
 1. Clone the repository:
    ```bash
-   git clone <your-github-repo-url>
+   git clone https://github.com/deepakaushik730/healthcare-mini-app
 2. Install dependencies:
 
 npm install
@@ -65,8 +67,8 @@ npm install
 3. Create a .env file:
 
 port=3000
-mongodb_uri=your_mongodb_atlas_uri
-jwt_secret=your_secret_key
+mongodb_uri=xxxx
+jwt_secret=supersecretkey
 
 4. Start the app:
 
@@ -75,3 +77,4 @@ npm run dev
 5. Open:
 
 http://localhost:3000
+

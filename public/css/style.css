@@ -1,7 +1,9 @@
+ /* GLOBAL RESET & BASE SETUP */
 * {
   box-sizing: border-box;
 }
 
+/* Page layout and animated background */
 body {
   margin: 0;
   min-height: 100vh;
@@ -27,6 +29,11 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+/* =========================
+   CARD / CONTAINER STYLES
+   ========================= */
+
+/* Main card wrapper for forms & dashboard */
 .card {
   background: white;
   padding: 35px;
@@ -35,17 +42,24 @@ body {
   box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
+/* Section headings */
 h2 {
   text-align: center;
   margin-bottom: 22px;
 }
 
+/* =========================
+   FORM ELEMENTS
+   ========================= */
+
+/* Labels above inputs */
 label {
   display: block;
   margin-top: 14px;
   font-weight: 500;
 }
 
+/* Text inputs and dropdowns */
 input, select {
   width: 100%;
   padding: 12px;
@@ -55,6 +69,7 @@ input, select {
   font-size: 14px;
 }
 
+/* Primary form button */
 button {
   margin-top: 22px;
   width: 100%;
@@ -71,48 +86,26 @@ button:hover {
   background: #4f46e5;
 }
 
+
+/* Auth / dashboard links row */
 .links {
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
 }
 
+/* Generic links */
 a {
   color: #4f46e5;
   text-decoration: none;
   font-weight: 500;
-}
-
-.error {
-  color: #dc2626;
-  text-align: center;
-  margin-top: 12px;
-}
-
-.history-item {
-  margin-top: 14px;
-}
-
-/* buttons hover */
-button {
-  transition: background 0.25s ease, transform 0.15s ease;
-}
-
-button:hover {
-  background: #4338ca;
-  transform: translateY(-1px);
-}
-
-/* link hover */
-a {
   transition: color 0.2s ease;
 }
-
 a:hover {
   color: #1e40af;
 }
 
-/* dashboard action links */
+/* Dashboard action links (History, New Assessment, etc.) */
 .links a {
   padding: 6px 10px;
   border-radius: 6px;
@@ -122,6 +115,14 @@ a:hover {
   background: rgba(79,70,229,0.1);
 }
 
+
+
+/* Individual history entries */
+.history-item {
+  margin-top: 14px;
+}
+
+ /* cross(close) button  */
 .close-btn {
   position: absolute;
   top: 18px;
@@ -132,21 +133,37 @@ a:hover {
 }
 
 .close-btn:hover {
-  color: #1e293b;
+  color: #d24323;
+  transform: translateY(1px);
 }
 
+/* Top-right container (Logout placement) */
 .top-right {
   position: absolute;
   top: 18px;
   right: 22px;
 }
 
-.top-right a {
+/* Logout link styled as a pill button */
+.logout-link {
   font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(99,102,241,0.1);
+  color: #4f46e5;
+  font-weight: 500;
+  transition: background 0.25s ease, color 0.2s ease, transform 0.15s ease;
 }
 
-.dashboard-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.logout-link:hover {
+  background: rgba(99,102,241,0.25);
+  color: #1e40af;
+  transform: translateY(-1px);
+}
+
+/* Error messages */
+.error {
+  color: #dc2626;
+  text-align: center;
+  margin-top: 12px;
 }
