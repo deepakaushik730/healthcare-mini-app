@@ -43,12 +43,13 @@ The application allows users to register, log in, submit health assessments, vie
 
 ## 📸 Screenshots
 
-> Add screenshots of:
+> Added screenshots of:
 - Login page  
 - Health dashboard with chart  
 - Health history page  
-
+- New assesment page
 ---
+
 🌐 Live Demo
 
 👉 Deployed link: https://healthcare-mini-app.onrender.com/
