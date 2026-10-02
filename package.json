@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "node -e \"process.exit(0)\"",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": ">=20.19.0 <25"
   },
   "keywords": [],
   "author": "",

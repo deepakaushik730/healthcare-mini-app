@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
   res.redirect("/login")
 })
 
-const port = Number(process.env.PORT || process.env.port) || 3000
+const port = process.env.port || 3000
 app.listen(port, () => {
   console.log(`server running on port ${port}`)
 })
