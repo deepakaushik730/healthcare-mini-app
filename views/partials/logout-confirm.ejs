@@ -1,0 +1,26 @@
+<button type="button" class="logout-link" id="logout-open" aria-haspopup="dialog">
+  Logout
+</button>
+
+<div id="logout-modal" class="logout-modal" hidden aria-hidden="true">
+  <div class="logout-modal-backdrop" aria-hidden="true"></div>
+  <div
+    class="logout-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="logout-modal-title"
+  >
+    <h3 id="logout-modal-title">Log out?</h3>
+    <p>Are you sure you want to log out of your account?</p>
+    <div class="logout-modal-actions">
+      <button type="button" class="logout-modal-btn logout-modal-btn-cancel" id="logout-cancel">
+        Cancel
+      </button>
+      <button type="button" class="logout-modal-btn logout-modal-btn-confirm" id="logout-confirm">
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/logout-confirm.js"></script>
