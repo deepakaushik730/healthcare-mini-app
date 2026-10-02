@@ -9,8 +9,6 @@ const healthroutes = require("./routes/healthroutes")
 
 const app = express()
 
-connectdb()
-
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "../views"))
 
@@ -23,11 +21,23 @@ app.use(express.static(path.join(__dirname, "../public")))
 app.use(authroutes)
 app.use(healthroutes)
 
+app.get("/health", (req, res) => {
+  res.status(200).send("ok")
+})
+
 app.get("/", (req, res) => {
   res.redirect("/login")
 })
 
 const port = Number(process.env.PORT || process.env.port) || 3000
-app.listen(port, () => {
-  console.log(`server running on port ${port}`)
-})
+
+connectdb()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`server running on port ${port}`)
+    })
+  })
+  .catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })

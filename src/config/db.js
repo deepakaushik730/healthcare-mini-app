@@ -1,19 +1,28 @@
 const mongoose = require("mongoose")
 
+const getMongoUri = () =>
+  process.env.mongodb_uri ||
+  process.env.MONGODB_URI ||
+  process.env.MONGO_URI
+
 const connectdb = async () => {
+  const uri = getMongoUri()
+  if (!uri) {
+    throw new Error(
+      "mongodb connection string is not set (set mongodb_uri or MONGODB_URI on Render)"
+    )
+  }
+
   try {
-    const uri =
-      process.env.mongodb_uri ||
-      process.env.MONGODB_URI ||
-      process.env.MONGO_URI
-    if (!uri) {
-      throw new Error("mongodb connection string is not set")
-    }
     await mongoose.connect(uri)
     console.log("mongodb connected")
   } catch (error) {
-    console.log(error)
-    process.exit(1)
+    if (error.code === "ENOTFOUND" && error.syscall === "querySrv") {
+      console.error(
+        "MongoDB SRV DNS lookup failed. The cluster hostname in your connection string is invalid or the Atlas cluster was removed. In Atlas: Database → Connect → copy a new connection string, then update mongodb_uri in Render Environment."
+      )
+    }
+    throw error
   }
 }
 
