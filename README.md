@@ -79,20 +79,3 @@ npm run dev
 
 http://localhost:3000
 
----
-
-## Render + MongoDB Atlas
-
-On Render, set environment variables (Dashboard → your service → **Environment**):
-
-- `mongodb_uri` — full Atlas connection string (`mongodb+srv://...`)
-- `jwt_secret` — any long random string
-
-If deploy logs show `querySrv ENOTFOUND _mongodb._tcp.<your-cluster>.mongodb.net`, the hostname in that URI **does not exist in DNS** (typo, renamed cluster, or deleted cluster). Fix it in Atlas, not in code:
-
-1. [MongoDB Atlas](https://cloud.mongodb.com) → **Database** → **Connect** → **Drivers** → copy the current connection string.
-2. Paste it into Render as `mongodb_uri` and save (triggers redeploy).
-3. **Network Access** → allow access from anywhere (`0.0.0.0/0`) or Render’s egress IPs so the app can reach Atlas.
-
-Update your local `.env` with the same URI so local and production stay in sync.
-
