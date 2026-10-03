@@ -20,20 +20,24 @@
       <input type="number" name="tiredness" min="1" max="5" required>
 
       <label>Appetite</label>
-      <select name="appetite">
+      <select name="appetite" required>
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
 
       <label>Activity Level</label>
-      <select name="activity">
+      <select name="activity" required>
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
 
       <button type="submit">Submit</button>
+
+      <% if (typeof error !== "undefined" && error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
     </form>
   </div>
 </body>

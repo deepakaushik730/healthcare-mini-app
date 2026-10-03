@@ -1,5 +1,8 @@
 const mongoose = require("mongoose")
 
+// Wraps any `$`-prefixed keys in query filters with $eq, blocking NoSQL operator injection.
+mongoose.set("sanitizeFilter", true)
+
 const connectdb = async () => {
   try {
     await mongoose.connect(process.env.mongodb_uri)

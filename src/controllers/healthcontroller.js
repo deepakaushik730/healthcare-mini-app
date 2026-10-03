@@ -1,7 +1,9 @@
 const healthrecord = require("../models/healthrecord")
 
+const levels = ["low", "medium", "high"]
+
 const gethealthform = (req, res) => {
-  res.render("healthform")
+  res.render("healthform", { error: null })
 }
 
 const calculatehealth = (data) => {
@@ -25,36 +27,49 @@ const calculatehealth = (data) => {
   return { score, recommendation }
 }
 
-const submithealth = async (req, res) => {
-  const { sleep, stress, appetite, activity, tiredness } = req.body
+// Accepts only whole numbers 1-5 sent as plain strings; anything else returns null.
+const parserating = (value) => {
+  if (typeof value !== "string" || !/^[1-5]$/.test(value.trim())) return null
+  return Number(value.trim())
+}
 
-  const result = calculatehealth({
-    sleep: Number(sleep),
-    stress: Number(stress),
-    appetite,
-    activity,
-    tiredness: Number(tiredness)
-  })
+const parselevel = (value) =>
+  typeof value === "string" && levels.includes(value) ? value : null
+
+const submithealth = async (req, res) => {
+  const data = {
+    sleep: parserating(req.body.sleep),
+    stress: parserating(req.body.stress),
+    tiredness: parserating(req.body.tiredness),
+    appetite: parselevel(req.body.appetite),
+    activity: parselevel(req.body.activity)
+  }
+
+  if (Object.values(data).some((v) => v === null)) {
+    return res.status(400).render("healthform", {
+      error: "please enter ratings from 1 to 5 and choose valid options"
+    })
+  }
+
+  const result = calculatehealth(data)
 
   await healthrecord.create({
     user: req.userid,
-    sleep,
-    stress,
-    appetite,
-    activity,
-    tiredness,
+    ...data,
     score: result.score,
     recommendation: result.recommendation
   })
 
-  res.redirect("/dashboard")
+  res.redirect(303, "/dashboard")
 }
 
 
 const gethistory = async (req, res) => {
   const records = await healthrecord
     .find({ user: req.userid })
+    .select("score recommendation createdat -_id")
     .sort({ createdat: -1 })
+    .lean()
 
   res.render("history", { records })
 }
@@ -62,7 +77,9 @@ const gethistory = async (req, res) => {
 const getdashboard = async (req, res) => {
   const records = await healthrecord
     .find({ user: req.userid })
+    .select("score recommendation createdat -_id")
     .sort({ createdat: 1 })
+    .lean()
 
   if (records.length === 0) {
     return res.render("dashboard", {
@@ -90,4 +107,3 @@ module.exports = {
   gethistory,
   getdashboard
 }
-
