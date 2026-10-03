@@ -14,9 +14,13 @@ router.get("/login", (req, res) => {
 
 router.post("/login", login)
 
-router.get("/logout", (req, res) => {
+const logout = (req, res) => {
   res.clearCookie("token")
-  res.redirect("/login")
-})
+  res.set("Cache-Control", "no-store")
+  res.redirect(303, "/login")
+}
+
+router.post("/logout", logout)
+router.get("/logout", logout)
 
 module.exports = router

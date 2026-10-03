@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken")
 
 const authmiddleware = (req, res, next) => {
+  // Prevents the Back button from showing protected pages after logout.
+  res.set("Cache-Control", "no-store")
+
   const token = req.cookies?.token
 
   if (!token) {

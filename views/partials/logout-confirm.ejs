@@ -1,19 +1,29 @@
-<button type="button" class="logout-link" id="logout-open" aria-haspopup="dialog">
-  Logout
-</button>
+<form method="post" action="/logout" id="logout-form" class="logout-form">
+  <button
+    type="submit"
+    class="logout-link"
+    id="logout-open"
+    aria-haspopup="dialog"
+    aria-controls="logout-modal"
+  >
+    Logout
+  </button>
+</form>
 
 <div id="logout-modal" class="logout-modal" hidden aria-hidden="true">
-  <div class="logout-modal-backdrop" aria-hidden="true"></div>
+  <div class="logout-modal-backdrop" data-logout-dismiss></div>
   <div
     class="logout-modal-dialog"
     role="dialog"
     aria-modal="true"
     aria-labelledby="logout-modal-title"
+    aria-describedby="logout-modal-desc"
+    tabindex="-1"
   >
     <h3 id="logout-modal-title">Log out?</h3>
-    <p>Are you sure you want to log out of your account?</p>
+    <p id="logout-modal-desc">Are you sure you want to log out of your account?</p>
     <div class="logout-modal-actions">
-      <button type="button" class="logout-modal-btn logout-modal-btn-cancel" id="logout-cancel">
+      <button type="button" class="logout-modal-btn logout-modal-btn-cancel" id="logout-cancel" data-logout-dismiss>
         Cancel
       </button>
       <button type="button" class="logout-modal-btn logout-modal-btn-confirm" id="logout-confirm">
@@ -23,4 +33,4 @@
   </div>
 </div>
 
-<script src="/js/logout-confirm.js"></script>
+<script src="/js/logout-confirm.js" defer></script>
